@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Transport Manjment System</title>
+    <title>Transport Management System</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -36,9 +36,33 @@
     <!-- Topbar End -->
 
 
-    
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top bg-dark bg-light-radial shadow-sm px-5 pe-lg-0">
+        <nav class="navbar navbar-expand-lg bg-dark bg-light-radial navbar-dark py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand">
+                <h1 class="m-0 display-4 text-uppercase text-white"><i class="bi bi-building text-primary me-2"></i>TMS</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Contact us</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="project.html" class="dropdown-item">Login</a>
+                        
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </div>
     <!-- Navbar End -->
-
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0">
@@ -104,377 +128,199 @@
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
     </div>
-
-    <!-- About Start -->
-
-
-<!-- Registration Form Start -->
-<div class="container-fluid py-6 px-5">
-    <div class="row gx-5">
-        <div class="col-lg-4 mb-5 mb-lg-0">
-            <div class="mb-4">
-                <h1 class="display-5 text-uppercase mb-4">Create an Account</h1>
-            </div>
-            <p class="mb-5">Register to access our transportation management system features.</p>
-        </div>
-        <div class="col-lg-8">
-            <div class="bg-light text-center p-5">
-                <form action="register.php" method="POST">
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control border-0" name="username" placeholder="Username" style="height: 55px;" required>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="email" class="form-control border-0" name="email" placeholder="Email" style="height: 55px;" required>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="password" class="form-control border-0" name="password" placeholder="Password" style="height: 55px;" required>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="password" class="form-control border-0" name="confirm_password" placeholder="Confirm Password" style="height: 55px;" required>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Registration Form End -->
-
-
-<div class="container-fluid py-6 px-5" id="searchFormContainer">
-    <div class="row gx-5">
-        <div class="col-lg-4 mb-5 mb-lg-0">
-            <div class="mb-4">
-                <h1 class="display-5 text-uppercase mb-4">Search for Account</h1>
-            </div>
-            <p class="mb-5">Enter your email and password to search for your account.</p>
-        </div>
-        <div class="col-lg-8">
-            <div class="bg-light text-center p-5">
-                <form id="searchForm">
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                            <input type="email" class="form-control" id="email" placeholder="Email" required>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="password" class="form-control" id="password" placeholder="Password" required>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="button" onclick="searchUser()">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- User Information Container -->
-<div class="container mt-4" id="userInfoContainer"></div>
-
-<!-- Search Form End -->
-
-
-
-<script>
-    function searchUser() {
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'search.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var userInfo = JSON.parse(xhr.responseText);
-                    displayUserInfo(userInfo);
-                } else {
-                    console.error('Error: ' + xhr.status);
-                }
-            }
-        };
-        xhr.send('email=' + email + '&password=' + password);
-    }
-
-    function displayUserInfo(userInfo) {
-        var userInfoContainer = document.getElementById('userInfoContainer');
-        userInfoContainer.innerHTML = '';
-
-        if (userInfo.error) {
-            userInfoContainer.innerHTML = '<p>' + userInfo.error + '</p>';
-        } else {
-            var html = '<div class="card">';
-            html += '<div class="card-header"><h2 class="card-title">User Information</h2></div>';
-            html += '<div class="card-body">';
-            html += '<p><strong>User ID:</strong> ' + userInfo.user_id + '</p>';
-            html += '<p><strong>Username:</strong> ' + userInfo.username + '</p>';
-            html += '<p><strong>Email:</strong> ' + userInfo.email + '</p>';
-            html += '<p><strong>Role:</strong> ' + userInfo.role + '</p>';
-            html += '<p><strong>Balance:</strong> $' + userInfo.balance + '</p>';
-            html += '<h3>Pass Transactions</h3>';
-            if (userInfo.transactions.length > 0) {
-                html += '<table class="table table-striped">';
-                html += '<thead><tr><th>Transaction ID</th><th>Transaction Date</th><th>Transaction Amount</th></tr></thead>';
-                html += '<tbody>';
-                userInfo.transactions.forEach(function(transaction) {
-                    html += '<tr>';
-                    html += '<td>' + transaction.transaction_id + '</td>';
-                    html += '<td>' + transaction.transaction_date + '</td>';
-                    html += '<td>$' + transaction.transaction_amount + '</td>';
-                    html += '</tr>';
-                });
-                html += '</tbody></table>';
-            } else {
-                html += '<p>No pass transactions found for this user.</p>';
-            }
-            html += '</div></div>';
-            userInfoContainer.innerHTML = html;
-        }
-    }
-</script>
-<style>
-    .card {
-        border: 1px solid rgba(0, 0, 0, 0.125);
-        border-radius: 0.25rem;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        margin-top: 50px;
-    }
-
-    .card-header {
-        background-color: rgba(0, 0, 0, 0.03);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-        padding: 0.75rem 1.25rem;
-    }
-
-    .card-title {
-        margin-bottom: 0;
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
-
-    .card-body {
-        padding: 1.25rem;
-    }
-
-    .table {
-        width: 100%;
-        margin-bottom: 1rem;
-        color: #212529;
-        border-collapse: collapse;
-    }
-
-    .table th,
-    .table td {
-        padding: 0.75rem;
-        vertical-align: top;
-        border-top: 1px solid #dee2e6;
-    }
-
-    .table thead th {
-        vertical-align: bottom;
-        border-bottom: 2px solid #dee2e6;
-    }
-
-    .table tbody + tbody {
-        border-top: 2px solid #dee2e6;
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: rgba(0, 0, 0, 0.075);
-    }
-</style>
-
-<body>
-    <h1>Live Location and Nearby Public Transport</h1>
-    <div id="map"></div>
-</body>
-<style>body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
-
-h1 {
-    margin-bottom: 20px;
-}
-
-#map {
-    width: 80%;
-    height: 80vh;
-    border: 1px solid #ccc;
-}
-</style>
-<script>let map;
-
-    function initMap() {
-        // Initialize the map centered at an arbitrary location
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 15
-        });
     
-        // Try HTML5 geolocation to get the user's location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
-    
-                    map.setCenter(pos);
-    
-                    new google.maps.Marker({
-                        position: pos,
-                        map: map,
-                        title: 'Your Location'
-                    });
-    
-                    // Search for nearby public transport
-                    const service = new google.maps.places.PlacesService(map);
-                    service.nearbySearch({
-                        location: pos,
-                        radius: 1000,
-                        type: ['transit_station']
-                    }, (results, status) => {
-                        if (status === google.maps.places.PlacesServiceStatus.OK) {
-                            results.forEach((place) => {
-                                new google.maps.Marker({
-                                    position: place.geometry.location,
-                                    map: map,
-                                    title: place.name
-                                });
-                            });
-                        }
-                    });
-                },
-                () => {
-                    handleLocationError(true, map.getCenter());
-                }
-            );
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, map.getCenter());
-        }
-    }
-    
-    function handleLocationError(browserHasGeolocation, pos) {
-        alert(browserHasGeolocation ? 
-              'Error: The Geolocation service failed.' :
-              'Error: Your browser doesn\'t support geolocation.');
-    }
-    </script>
-<!-- Transport Management System Footer Start -->
-<div class="footer container-fluid position-relative bg-dark bg-light-radial text-white-50 py-6 px-5">
-    <div class="row g-5">
-        <div class="col-lg-6 pe-lg-5">
-            <a href="index.html" class="navbar-brand">
-                <h1 class="m-0 display-4 text-uppercase text-white"><i class="bi bi-shield-shaded text-primary me-2"></i>Transport Manager</h1>
-            </a>
-            <p>Manage your transportation efficiently with our system. We provide tools to optimize routes, track vehicles, and enhance passenger experience.</p>
-            <p><i class="fa fa-map-marker-alt me-2"></i>123 Transport Avenue, City, Country</p>
-            <p><i class="fa fa-phone-alt me-2"></i>+123 456 7890</p>
-            <p><i class="fa fa-envelope me-2"></i>info@transportmanager.com</p>
-            <div class="d-flex justify-content-start mt-4">
-                <a class="btn btn-lg btn-primary btn-lg-square rounded-0 me-2" href="#"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-lg btn-primary btn-lg-square rounded-0 me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-lg btn-primary btn-lg-square rounded-0 me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-lg btn-primary btn-lg-square rounded-0" href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-6 ps-lg-5">
-            <div class="row g-5">
-                <div class="col-sm-6">
-                    <h4 class="text-white text-uppercase mb-4">Quick Links</h4>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Services</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Vehicles</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
-                    </div>
+
+
+    <<!-- About Start -->
+
+
+    <!-- Registration Form Start -->
+    <div class="container-fluid py-6 px-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="mb-4">
+                    <h1 class="display-5 text-uppercase mb-4">Create an Account</h1>
                 </div>
-                <div class="col-sm-6">
-                    <h4 class="text-white text-uppercase mb-4">Popular Links</h4>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Dashboard</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Routes</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Passes</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Reports</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right me-2"></i>Settings</a>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <h4 class="text-white text-uppercase mb-4">Newsletter</h4>
-                    <div class="w-100">
-                        <div class="input-group">
-                            <input type="text" class="form-control border-light" style="padding: 20px 30px;" placeholder="Your Email Address"><button class="btn btn-primary px-4">Subscribe</button>
+                <p class="mb-5">Register to access our transportation management system features.</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="bg-light text-center p-5">
+                    <form action="register.php" method="POST">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control border-0" name="username" placeholder="Username" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="email" class="form-control border-0" name="email" placeholder="Email" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="password" class="form-control border-0" name="password" placeholder="Password" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="password" class="form-control border-0" name="confirm_password" placeholder="Confirm Password" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container-fluid bg-dark bg-light-radial text-white border-top border-primary px-0">
-    <div class="d-flex flex-column flex-md-row justify-content-between">
-        <div class="py-4 px-5 text-center text-md-start">
-            <p class="mb-0">&copy; <a class="text-primary" href="#">Transport Manager</a>. All Rights Reserved.</p>
-        </div>
-        <div class="py-4 px-5 bg-primary footer-shape position-relative text-center text-md-end">
-            <p class="mb-0">Designed by <a class="text-dark" href="#">Your Company</a></p>
+    <!-- Registration Form End -->
+
+    <!-- Search Form Start -->
+    <div class="container-fluid py-6 px-5" id="searchFormContainer">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="mb-4">
+                    <h1 class="display-5 text-uppercase mb-4">Search for Account</h1>
+                </div>
+                <p class="mb-5">Enter your email and password to search for your account.</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="bg-light text-center p-5">
+                    <form id="searchForm">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="button" onclick="searchUser()">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<!-- Transport Management System Footer End -->
+    <!-- User Information Container -->
+    <div class="container mt-4" id="userInfoContainer"></div>
+    <!-- Search Form End -->
 
+    <!-- Map Start -->
+    <div class="container-fluid mt-5 px-5">
+        <h1 class="display-5 text-uppercase mb-4">Our Location</h1>
+        <div id="map" style="width: 100%; height: 500px;"></div>
+    </div>
+    <!-- Map End -->
 
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark bg-light-radial text-white-50 py-5 px-5">
+        <div class="row gy-5 gx-4 pt-5">
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white text-uppercase mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>info@example.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white text-uppercase mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="">About Us</a>
+                <a class="btn btn-link text-white-50" href="">Contact Us</a>
+                <a class="btn btn-link text-white-50" href="">Our Services</a>
+                <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
+                <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white text-uppercase mb-4">Popular Links</h5>
+                <a class="btn btn-link text-white-50" href="">About Us</a>
+                <a class="btn btn-link text-white-50" href="">Contact Us</a>
+                <a class="btn btn-link text-white-50" href="">Our Services</a>
+                <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
+                <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white text-uppercase mb-4">Newsletter</h5>
+                <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                <div class="w-100 mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email Address">
+                        <button class="btn btn-primary">Sign Up</button>
+                    </div>
+                </div>
+                <h6 class="text-white text-uppercase mt-4 mb-3">Follow Us</h6>
+                <div class="d-flex">
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-lg btn-primary btn-lg-square rounded" href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-white border-top border-secondary py-4">
+            <div class="row gx-0">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">Your Site Name</a>. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed by <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/twentytwenty/jquery.event.move.js"></script>
+    <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCje-jaYGxqMACbUrwFEVBWjvvWwu48VlU"></script>
+    <script>
+        function initMap() {
+            var location = { lat: 40.712776, lng: -74.005974 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+        window.onload = initMap;
+    </script>
 </body>
 
 </html>
